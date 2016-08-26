@@ -24,8 +24,8 @@ class FileSplit {
         try {
             splitFile(new File("D:\\Music\\Viet Nam\\Chi la giac mo - Vu Cat Tuong.mp3"));
             System.out.println("Split file successfully");
-        } catch (FileNotFoundException ex) {
-            System.out.println("No such file");
+        }  catch (IOException ex) {
+            ex.printStackTrace();
         }
 
     }
