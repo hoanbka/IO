@@ -17,7 +17,7 @@ public class FileMerger {
 
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
         List<File> files = new ArrayList<>();
 
         try {
@@ -30,9 +30,7 @@ public class FileMerger {
             mergeFiles(files, result);
             System.out.println("Merge files successfully");
         } catch (IOException ex) {
-            System.out.println("No such file");
+            ex.printStackTrace();
         }
-
-
     }
 }
