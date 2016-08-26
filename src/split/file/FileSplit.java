@@ -19,8 +19,7 @@ class FileSplit {
         }
     }
 
-    public static void main(String[] args) throws IOException, FileNotFoundException {
-
+    public static void main(String[] args) {
         try {
             splitFile(new File("D:\\Music\\Viet Nam\\Chi la giac mo - Vu Cat Tuong.mp3"));
             System.out.println("Split file successfully");
