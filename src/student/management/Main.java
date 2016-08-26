@@ -41,8 +41,12 @@ public class Main {
                             int age = input.nextInt();
                             System.out.println("ID of the student:");
                             String ID = input.next();
-                            stdMng.addStudent(new Student(name, age, ID));
-                            System.out.println("Add successfully");
+                            if (stdMng.addStudent(new Student(name, age, ID))) {
+                                System.out.println("Add successfully");
+                            } else {
+                                System.out.println("Not successfully");
+                            }
+
                             break;
                         } catch (InputMismatchException ex) {
                             input.nextLine();
@@ -97,8 +101,10 @@ public class Main {
                     try {
                         StudentDataAccess.writeToTextFile(students);
                         System.out.println("Successfully");
-                    } catch (IOException ex) {
-                        System.out.println("IO exception");
+                    } catch (FileNotFoundException ex) {
+                        System.out.println("No such file");
+                    } catch (UnsupportedEncodingException ex) {
+                        System.out.println("UnsupportedEncodingException");
                     }
                     break;
                 case 7:
