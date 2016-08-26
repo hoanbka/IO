@@ -2,6 +2,7 @@ package student.management;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class StudentManager {
@@ -20,7 +21,6 @@ public class StudentManager {
             if (students.get(i).getID().equals(ID)) {
                 return students.get(i);
             }
-
         }
         return null;
     }
@@ -49,4 +49,9 @@ public class StudentManager {
         return false;
     }
 
+    public void disp() {
+        for (Student student : students) {
+            System.out.println(student.toString());
+        }
+    }
 }
