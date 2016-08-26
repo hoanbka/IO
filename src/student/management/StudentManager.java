@@ -13,6 +13,10 @@ public class StudentManager {
     }
 
     public boolean addStudent(Student std) {
+
+        if (findStudentByID(std.getID()) != null) {
+            return false;
+        }
         return students.add(std);
     }
 
