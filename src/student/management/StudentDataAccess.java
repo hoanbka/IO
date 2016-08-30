@@ -40,18 +40,17 @@ public class StudentDataAccess {
         }
     }
 
-    public static void writeToTextFile(List<Student> studentList) throws FileNotFoundException, UnsupportedEncodingException {
+    public static void writeToTextFile(List<Student> studentList) throws IOException {
 
-        PrintWriter writer = new PrintWriter("StudentList.txt", "UTF-8");
-        try {
+        try (BufferedOutputStream bufferedOutputStream =
+                     new BufferedOutputStream(new FileOutputStream("StudentList.txt", true))) {
 
-            for (Student stdList : studentList) {
-                writer.println(stdList.toString());
+            for (Student student : studentList) {
+                bufferedOutputStream.write((student.toString()).getBytes());
+                bufferedOutputStream.write("\n".getBytes());
             }
-
-        } finally {
-            writer.close();
         }
+
     }
 
     public static List<Student> readFromTextFile(String path) throws IOException {
@@ -70,6 +69,4 @@ public class StudentDataAccess {
             return students;
         }
     }
-
-
 }
