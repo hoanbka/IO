@@ -1,8 +1,6 @@
 package student.management;
 
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class StudentManager {
@@ -14,7 +12,8 @@ public class StudentManager {
 
     public boolean addStudent(Student std) {
 
-        if (findStudentByID(std.getID()) != null) {
+        if ((isStudentExisted(std.getID())) ||
+                (std.getID() == null) || (std.getName() == null) || (std.getAge() <= 0)) {
             return false;
         }
         return students.add(std);
@@ -29,6 +28,15 @@ public class StudentManager {
         return null;
     }
 
+    private boolean isStudentExisted(String ID) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getID().equals(ID)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Student> findStudentByName(String stdName) {
         List<Student> stdList = new ArrayList<>();
         for (int i = 0; i < students.size(); i++) {
@@ -36,7 +44,6 @@ public class StudentManager {
                 stdList.add(students.get(i));
             }
         }
-
         return stdList;
     }
 
