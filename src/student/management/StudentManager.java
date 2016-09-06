@@ -1,10 +1,27 @@
 package student.management;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManager {
-    private List<Student> students = new ArrayList<Student>();
+
+    public List<Student> students = getFile();
+
+    private List<Student> getFile() {
+        try {
+            List<Student> students = StudentDataAccess.readFromTextFile("StudentList.txt");
+            if (students.isEmpty()) {
+                return new ArrayList<>();
+            }
+            return students;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public List<Student> getStudents() {
         return students;
@@ -12,8 +29,8 @@ public class StudentManager {
 
     public boolean addStudent(Student std) {
 
-        if ((isStudentExisted(std.getID())) ||
-                (std.getID() == null) || (std.getName() == null) || (std.getAge() <= 0)) {
+        if ((std.getID().length() == 0) || (std.getName().length() == 0) || (std.getAge() <= 0)
+                || (isStudentExisted(std.getID()))) {
             return false;
         }
         return students.add(std);
