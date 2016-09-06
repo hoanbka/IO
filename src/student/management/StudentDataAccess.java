@@ -9,7 +9,7 @@ public class StudentDataAccess {
 
     public static void writeToBinaryFile(List<Student> studentList) throws IOException {
 
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("Binary.txt", true));
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("Binary.txt", false));
         try {
             objectOutputStream.writeObject(studentList);
             objectOutputStream.flush();
@@ -22,7 +22,7 @@ public class StudentDataAccess {
 
     public static void writeToBinaryFile2(List<Student> studentList) throws IOException {
 
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("Binary.txt", true))) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("Binary.txt", false))) {
             objectOutputStream.writeObject(studentList);
             objectOutputStream.flush();
         }
@@ -43,7 +43,7 @@ public class StudentDataAccess {
     public static void writeToTextFile(List<Student> studentList) throws IOException {
 
         try (BufferedOutputStream bufferedOutputStream =
-                     new BufferedOutputStream(new FileOutputStream("StudentList.txt", true))) {
+                     new BufferedOutputStream(new FileOutputStream("StudentList.txt", false))) {
 
             for (Student student : studentList) {
                 bufferedOutputStream.write((student.toString()).getBytes());
